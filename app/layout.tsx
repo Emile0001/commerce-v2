@@ -4,7 +4,7 @@ import "./globals.css";
 import { APP_NAME, APP_DESCRIPTION } from "@/lib/constants";
 import Navbar from "@/components/navbar/Navbar";
 import Container from "@/components/global/Container";
-
+import { ThemeProvider } from "@/components/theme-provider";
 const geistSans = Geist({
     variable: "--font-geist-sans",
     subsets: ["latin"],
@@ -26,12 +26,19 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
+        <html lang="en" suppressHydrationWarning>
             <body
                 className={`${geistSans.variable} ${geistMono.variable} antialiased`}
             >
-                <Navbar />
-                <Container className="py-20">{children}</Container>
+                <ThemeProvider
+                    attribute="class"
+                    defaultTheme="system"
+                    enableSystem
+                    disableTransitionOnChange
+                >
+                    <Navbar />
+                    <Container className="py-20">{children}</Container>
+                </ThemeProvider>
             </body>
         </html>
     );
