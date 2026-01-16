@@ -1,12 +1,12 @@
 import Link from "next/link";
 import { Button } from "../ui/button";
-import { FaCross } from "react-icons/fa";
+import { HeartPlusIcon } from "lucide-react";
 
 function Logo() {
     return (
         <Button size={"icon"} asChild>
             <Link href={"/"}>
-                <FaCross className="w-6 h-6" />
+                <HeartPlusIcon className="w-6 h-6" />
             </Link>
         </Button>
     );
