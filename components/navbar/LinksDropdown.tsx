@@ -7,7 +7,7 @@ import {
 import { MenuIcon } from "lucide-react";
 import Link from "next/link";
 import { Button } from "../ui/button";
-import { links } from "@/app/utils/links";
+import { links } from "@/components/navbar/links";
 
 function LinksDropdown() {
     return (

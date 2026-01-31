@@ -1,7 +1,3 @@
-// const ProductRating = () => {
-//     return <div>ProductRating</div>;
-// };
-// export default ProductRating;
 import * as React from "react";
 import { Star } from "lucide-react";
 import { cn } from "@/lib/utils";
