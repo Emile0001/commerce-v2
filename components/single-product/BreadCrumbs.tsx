@@ -1,4 +1,4 @@
-import { HomeIcon, ShirtIcon } from "lucide-react";
+import { HomeIcon } from "lucide-react";
 import {
     Breadcrumb,
     BreadcrumbItem,
@@ -19,9 +19,11 @@ const BreadCrumbs = ({ name }: { name: string }) => {
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
-                    <BreadcrumbLink href="/products">
-                        <ShirtIcon />
-                        Products
+                    <BreadcrumbLink
+                        href="/products"
+                        className="capitalize text-lg"
+                    >
+                        products
                     </BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
