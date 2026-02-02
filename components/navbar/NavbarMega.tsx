@@ -52,7 +52,7 @@ export function NavbarMega({ className }: Props) {
                 className,
             )}
         >
-            <div className="container">
+            <div className="mx-auto max-w-6xl xl:max-w-7xl px-8">
                 {/* Desktop */}
                 <nav className="hidden lg:flex items-center justify-between py-4">
                     <div className="flex items-center gap-8">
