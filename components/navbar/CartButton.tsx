@@ -1,23 +1,31 @@
-import { ShoppingCartIcon } from "lucide-react";
-import { Button } from "../ui/button";
-import Link from "next/link";
+"use client";
 
-async function CartButton() {
-    const numItemsInCart: number = 9;
+import Link from "next/link";
+import { ShoppingCartIcon } from "lucide-react";
+import { Button } from "@/components/ui/button";
+
+type CartButtonProps = {
+    numItemsInCart?: number;
+};
+
+export default function CartButton({ numItemsInCart = 0 }: CartButtonProps) {
     return (
         <Button
             asChild
-            variant={"outline"}
-            size={"icon"}
-            className=" flex justify-center items-center relative"
+            variant="outline"
+            size="icon"
+            className="relative flex items-center justify-center"
+            aria-label="Cart"
         >
-            <Link href={"/cart"}>
-                <ShoppingCartIcon />
-                <span className="absolute -top-3 -right-3 h-5 w-5 bg-primary text-white rounded-full flex justify-center items-center text-xs">
-                    {numItemsInCart}
-                </span>
+            <Link href="/cart" className="relative">
+                <ShoppingCartIcon className="size-5" />
+
+                {numItemsInCart > 0 && (
+                    <span className="absolute -top-3 -right-3 h-5 w-5 rounded-full bg-primary text-white text-xs flex items-center justify-center">
+                        {numItemsInCart}
+                    </span>
+                )}
             </Link>
         </Button>
     );
 }
-export default CartButton;

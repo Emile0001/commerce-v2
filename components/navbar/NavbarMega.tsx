@@ -3,7 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu as MenuIcon, Search, ShoppingBag, User } from "lucide-react";
+import { Menu as MenuIcon } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { NAVBAR_MEGA_DATA, type MegaMenuItem } from "@/app/utils/link";
@@ -31,12 +31,12 @@ import {
     SheetTrigger,
 } from "@/components/ui/sheet";
 
-// your separate components
 import { Logo } from "./Logo";
 import DarkMode from "./DarkMode";
 import { AuthButtons } from "./AuthButtons";
 import NavSearch from "./NavSearch";
 import CartButton from "./CartButton";
+import AccountDropDownMenu from "./AccountDropDownMenu";
 
 type Props = {
     className?: string;
@@ -78,13 +78,8 @@ export function NavbarMega({ className }: Props) {
                     <div className="flex items-center gap-1">
                         <NavSearch />
                         <DarkMode />
-                        <CartButton />
-                        <div className="ml-2">
-                            <AuthButtons
-                                login={auth.login}
-                                signup={auth.signup}
-                            />
-                        </div>
+                        <AccountDropDownMenu />
+                        <CartButton numItemsInCart={9} />
                     </div>
                 </nav>
 
@@ -99,8 +94,8 @@ export function NavbarMega({ className }: Props) {
 
                     <div className="flex items-center gap-1">
                         <NavSearch />
-                        <CartButton />
                         <DarkMode />
+                        <CartButton numItemsInCart={9} />
 
                         <Sheet>
                             <SheetTrigger asChild>
@@ -115,13 +110,9 @@ export function NavbarMega({ className }: Props) {
 
                             <SheetContent className="overflow-y-auto">
                                 <SheetHeader>
-                                    <SheetTitle>
-                                        <Logo
-                                            url={logo.url}
-                                            src={logo.src}
-                                            alt={logo.alt}
-                                            title={logo.title}
-                                        />
+                                    <SheetTitle className="flex gap-4 pr-10">
+                                        <NavSearch />
+                                        <CartButton numItemsInCart={9} />
                                     </SheetTitle>
                                 </SheetHeader>
 

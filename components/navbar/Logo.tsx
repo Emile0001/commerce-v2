@@ -28,12 +28,10 @@ export function Logo({
 }) {
     return (
         <Link href={url} className="flex items-center gap-2">
-            {/* Use next/image later if you want */}
-
-            <img src={src} className="max-h-8 dark:invert" alt={alt} />
-            <span className="text-sm md:text-base font-semibold tracking-[0.25em] uppercase">
+            <img src={src} className="h-10 w-auto md:h-12 lg:h-14 " alt={alt} />
+            {/* <span className="text-sm md:text-base font-semibold tracking-[0.25em] uppercase">
                 {title}
-            </span>
+            </span> */}
         </Link>
     );
 }

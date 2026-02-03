@@ -4,21 +4,21 @@ import {
     DropdownMenuItem,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { MenuIcon } from "lucide-react";
+import { UserIcon } from "lucide-react";
 import Link from "next/link";
 import { Button } from "../ui/button";
-import { links } from "@/components/navbar/links";
+import { accountLinks } from "@/components/navbar/accountLinks";
 
-function LinksDropdown() {
+function AccountDropDownMenu() {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
                 <Button variant="outline" className="flex gap-4 max-w-25">
-                    <MenuIcon className="w-6 h-6" />
+                    <UserIcon className="w-6 h-6" />
                 </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-40 p-2 space-y-1">
-                {links.map((link) => {
+                {accountLinks.map((link) => {
                     const Icon = link.icon;
                     return (
                         <DropdownMenuItem asChild key={link.href}>
@@ -36,4 +36,4 @@ function LinksDropdown() {
         </DropdownMenu>
     );
 }
-export default LinksDropdown;
+export default AccountDropDownMenu;

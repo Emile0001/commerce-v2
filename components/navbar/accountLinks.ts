@@ -14,7 +14,7 @@ type NavLink = {
     icon?: LucideIcon;
 };
 
-export const links: NavLink[] = [
+export const accountLinks: NavLink[] = [
     { href: "/", label: "home", icon: HomeIcon },
     { href: "/about", label: "about", icon: BookAIcon },
     { href: "/products", label: "products", icon: ShirtIcon },
