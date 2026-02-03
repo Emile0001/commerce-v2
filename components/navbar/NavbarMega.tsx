@@ -93,8 +93,8 @@ export function NavbarMega({ className }: Props) {
                     />
 
                     <div className="flex items-center gap-1">
-                        <NavSearch />
                         <DarkMode />
+                        <AccountDropDownMenu />
                         <CartButton numItemsInCart={9} />
 
                         <Sheet>
@@ -112,7 +112,6 @@ export function NavbarMega({ className }: Props) {
                                 <SheetHeader>
                                     <SheetTitle className="flex gap-4 pr-10">
                                         <NavSearch />
-                                        <CartButton numItemsInCart={9} />
                                     </SheetTitle>
                                 </SheetHeader>
 

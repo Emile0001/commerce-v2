@@ -178,8 +178,7 @@ export const NAVBAR_MEGA_DATA: NavbarMegaPropsData = {
                 title: "AURA SETS",
                 cta: "SHOP AURA",
                 url: "/styles/aura-gradient",
-                imageSrc:
-                    "https://images.unsplash.com/photo-1600428853876-fb5b4e2f2f85?auto=format&fit=crop&w=1600&q=80",
+                imageSrc: "/images/Nav/nailimage01.jpg",
                 imageAlt: "Aura gradient nail art",
             },
         },
@@ -298,8 +297,7 @@ export const NAVBAR_MEGA_DATA: NavbarMegaPropsData = {
                 title: "CUSTOM SETS",
                 cta: "START CUSTOM",
                 url: "/custom/build",
-                imageSrc:
-                    "https://images.unsplash.com/photo-1600180758895-1a9ff9848a2d?auto=format&fit=crop&w=1600&q=80",
+                imageSrc: "/images/Nav/nailimage02.jpg",
                 imageAlt: "Custom nail art being applied",
             },
         },
@@ -336,6 +334,14 @@ export const NAVBAR_MEGA_DATA: NavbarMegaPropsData = {
                     ],
                 },
             ],
+            promo: {
+                eyebrow: "MADE FOR YOU",
+                title: "CUSTOM SETS",
+                cta: "START CUSTOM",
+                url: "/custom/build",
+                imageSrc: "/images/Nav/nailimage03.jpg",
+                imageAlt: "Custom nail art being applied",
+            },
         },
     ],
 

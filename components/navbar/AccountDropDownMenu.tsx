@@ -14,7 +14,7 @@ function AccountDropDownMenu() {
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
                 <Button variant="outline" className="flex gap-4 max-w-25">
-                    <UserIcon className="w-6 h-6" />
+                    <UserIcon className="h-[1.2rem] w-[1.2rem]" />
                 </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-40 p-2 space-y-1">
