@@ -26,6 +26,7 @@ import {
 import {
     Sheet,
     SheetContent,
+    SheetFooter,
     SheetHeader,
     SheetTitle,
     SheetTrigger,
@@ -129,13 +130,14 @@ export function NavbarMega({ className }: Props) {
                                             />
                                         ))}
                                     </Accordion>
-
-                                    <div className="mt-6">
-                                        <AuthButtons
-                                            login={auth.login}
-                                            signup={auth.signup}
-                                        />
-                                    </div>
+                                    <SheetFooter>
+                                        <div className="mt-6">
+                                            <AuthButtons
+                                                login={auth.login}
+                                                signup={auth.signup}
+                                            />
+                                        </div>
+                                    </SheetFooter>
                                 </div>
                             </SheetContent>
                         </Sheet>
