@@ -1,4 +1,4 @@
-import { Product } from "@/app/generated/prisma/client";
+import { Product } from "@/generated/prisma/client";
 import { formatCurrency } from "@/app/utils/format";
 import { Card, CardContent } from "@/components/ui/card";
 import Link from "next/link";
