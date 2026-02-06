@@ -1,4 +1,4 @@
-import LoadingContainer from "@/components/global/LoadingContainer";
+import LoadingContainer from "@/components/layout/LoadingContainer";
 import FeaturedProducts from "@/components/home/FeaturedProducts";
 import Hero from "@/components/home/Hero";
 

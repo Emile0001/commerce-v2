@@ -3,9 +3,9 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "@/app/globals.css";
 import { APP_NAME, APP_DESCRIPTION } from "@/lib/constants";
 
-import Container from "@/components/global/Container";
+import PageContainer from "@/components/layout/PageContainer";
 import { ThemeProvider } from "@/components/theme-provider";
-import { NavbarMega } from "@/components/navbar/NavbarMega";
+import NavbarMega from "@/components/navbar/NavbarMega";
 const geistSans = Geist({
     variable: "--font-geist-sans",
     subsets: ["latin"],
@@ -38,7 +38,7 @@ export default function RootLayout({
                     disableTransitionOnChange
                 >
                     <NavbarMega />
-                    <Container className="py-20">{children}</Container>
+                    <PageContainer className="py-20">{children}</PageContainer>
                 </ThemeProvider>
             </body>
         </html>

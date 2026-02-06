@@ -1,6 +1,6 @@
 import { fetchFeaturedProducts } from "@/app/utils/actions";
-import EmptyList from "../global/EmptyList";
-import SectionTitle from "../global/SectionTitle";
+import EmptyList from "../layout/EmptyList";
+import SectionTitle from "../layout/SectionTitle";
 import ProductsGrid from "../products/ProductsGrid";
 
 async function FeaturedProducts() {
