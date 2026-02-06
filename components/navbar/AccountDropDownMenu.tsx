@@ -7,7 +7,7 @@ import {
 import { UserIcon } from "lucide-react";
 import Link from "next/link";
 import { Button } from "../ui/button";
-import { accountLinks } from "@/components/navbar/accountLinks";
+import { accountLinks } from "@/app/utils/accountLinks";
 
 function AccountDropDownMenu() {
     return (

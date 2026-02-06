@@ -4,7 +4,7 @@ import "@/app/globals.css";
 import { APP_NAME, APP_DESCRIPTION } from "@/lib/constants";
 
 import PageContainer from "@/components/layout/PageContainer";
-import { ThemeProvider } from "@/components/theme-provider";
+import { ThemeProvider } from "@/components/providers/theme-provider";
 import NavbarMega from "@/components/navbar/NavbarMega";
 const geistSans = Geist({
     variable: "--font-geist-sans",
