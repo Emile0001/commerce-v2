@@ -6,6 +6,7 @@ import { APP_NAME, APP_DESCRIPTION } from "@/lib/constants";
 import PageContainer from "@/components/layout/PageContainer";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import NavbarMega from "@/components/navbar/NavbarMega";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {

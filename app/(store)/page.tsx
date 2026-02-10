@@ -1,4 +1,4 @@
-import LoadingContainer from "@/components/layout/LoadingContainer";
+import FeaturedProductsLoading from "@/components/home/FeaturedProductsLoading";
 import FeaturedProducts from "@/components/home/FeaturedProducts";
 import Hero from "@/components/home/Hero";
 
@@ -9,7 +9,7 @@ function HomePage() {
         <>
             <Hero />
 
-            <Suspense fallback={<LoadingContainer />}>
+            <Suspense fallback={<FeaturedProductsLoading />}>
                 <FeaturedProducts />
             </Suspense>
         </>

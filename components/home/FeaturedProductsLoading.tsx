@@ -3,7 +3,7 @@
 import { Skeleton } from "../ui/skeleton";
 import { Card, CardContent } from "../ui/card";
 
-function LoadingContainer() {
+function FeaturedProductsLoading() {
     return (
         <div className="pt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             <LoadingProduct />
@@ -38,4 +38,4 @@ function LoadingProduct() {
         </article>
     );
 }
-export default LoadingContainer;
+export default FeaturedProductsLoading;
