@@ -1,16 +1,19 @@
 import z from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 export const passwordSchema = z
     .string()
     .min(1, { message: "Password is required" })
     .min(8, { message: "Password must be at least 8 characters" })
-    .regex(/[^A-Za-z0-9])/, {
+    .regex(/[^A-Za-z0-9]/, {
         message: "Password must contain at least one special character",
     });
 
 export const signUpSchema = z
     .object({
-        name: z.string().min(1, { message: "Name is required" }),
+        name: z
+            .string()
+            .min(1, { message: "Name must be at least 3 characters" }),
         email: z.email({ message: "Please enter a valid email" }),
         password: passwordSchema,
         passwordConfirmation: z
