@@ -58,7 +58,7 @@ export function SignInForm() {
     }
 
     return (
-        <Card className="w-full m-w-md">
+        <Card className="w-full max-w-md">
             <CardHeader>
                 <CardTitle className="text-lg md:text-xl">Sign In</CardTitle>
                 <CardDescription className="text-xs md:text-sm">
@@ -93,7 +93,7 @@ export function SignInForm() {
                                     <FormLabel>Password</FormLabel>
                                     <Link
                                         href="/forgot-password"
-                                        className="ml-auto inline-block text-sm underline"
+                                        className="ml-auto inline-block text-xs underline"
                                     >
                                         Forgot you password?
                                     </Link>
@@ -138,7 +138,7 @@ export function SignInForm() {
                     >
                         Login
                     </LoadingButton>
-                    <div className="flex w-full flex-col items-center justify-between gap-2 pt-4">
+                    <div className="flex w-full flex-col items-center justify-between gap-2 pt-3">
                         <Button
                             type="button"
                             variant="outline"

@@ -50,7 +50,7 @@ export function SignUpForm() {
         <Card className="w-full max-w-md">
             <CardHeader>
                 <CardTitle className="text-lg md:text-xl">Sign Up</CardTitle>
-                <CardDescription className="text-sx md:text-sm">
+                <CardDescription className="text-xs md:text-sm">
                     Enter your information to create an account
                 </CardDescription>
             </CardHeader>
