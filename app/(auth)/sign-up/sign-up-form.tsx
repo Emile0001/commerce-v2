@@ -17,7 +17,7 @@ import {
     FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { passwordSchema, signUpSchema } from "@/lib/validation";
+import { signUpSchema } from "@/lib/validation";
 import { useForm } from "react-hook-form";
 import { SignUpValues } from "@/types";
 import { useState } from "react";

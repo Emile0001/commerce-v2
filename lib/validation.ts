@@ -11,9 +11,7 @@ export const passwordSchema = z
 
 export const signUpSchema = z
     .object({
-        name: z
-            .string()
-            .min(1, { message: "Name must be at least 3 characters" }),
+        name: z.string().min(1, { message: "Name is required" }),
         email: z.email({ message: "Please enter a valid email" }),
         password: passwordSchema,
         passwordConfirmation: z
@@ -24,3 +22,9 @@ export const signUpSchema = z
         message: "Passwords do not match",
         path: ["passwordConfirmation"],
     });
+
+export const signInSchema = z.object({
+    email: z.email({ message: "Please enter a valid email" }),
+    password: z.string().min(1, { message: "Password is required" }),
+    rememberMe: z.boolean().optional(),
+});
