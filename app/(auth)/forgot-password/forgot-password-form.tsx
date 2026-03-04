@@ -2,23 +2,20 @@
 
 import { Card, CardContent } from "@/components/ui/card";
 import {
-    Form,
-    FormControl,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage,
-} from "@/components/ui/form";
+    Field,
+    FieldError,
+    FieldGroup,
+    FieldLabel,
+} from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { success, z } from "zod";
+import { Controller, useForm } from "react-hook-form";
 
 import { LoadingButton } from "@/components/loading-button";
 
 import { ForgotPasswordValues } from "@/types";
-import { forgotPasswordSchema, passwordSchema } from "@/lib/validation";
+import { forgotPasswordSchema } from "@/lib/validation";
 
 export function ForgotPasswordForm() {
     const [success, setSuccess] = useState<string | null>(null);
@@ -34,55 +31,56 @@ export function ForgotPasswordForm() {
     }
 
     const loading = form.formState.isSubmitting;
+
     return (
-        <Card className="mx-auto w-full max-w-md">
+        <Card className="mx-auto w-full max-w-md ">
             <CardContent>
-                <Form {...form}>
-                    <form
-                        onSubmit={form.handleSubmit(onSubmit)}
-                        className="space-y-4"
-                    >
-                        <FormField
-                            control={form.control}
+                <form
+                    onSubmit={form.handleSubmit(onSubmit)}
+                    className="space-y-4"
+                >
+                    <FieldGroup>
+                        <Controller
                             name="email"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Email</FormLabel>
-                                    <FormControl>
-                                        <Input
-                                            type="email"
-                                            placeholder="your@email.com"
-                                            {...field}
+                            control={form.control}
+                            render={({ field, fieldState }) => (
+                                <Field data-invalid={fieldState.invalid}>
+                                    <FieldLabel htmlFor="email_id">
+                                        Email
+                                    </FieldLabel>
+                                    <Input
+                                        {...field}
+                                        id="email_id"
+                                        placeholder="your@email.com"
+                                        aria-invalid={fieldState.invalid}
+                                        type="email"
+                                    />
+                                    {fieldState.invalid && (
+                                        <FieldError
+                                            errors={[fieldState.error]}
                                         />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
+                                    )}
+                                </Field>
                             )}
                         />
+                    </FieldGroup>
 
-                        {success && (
-                            <div
-                                role="status"
-                                className="text-sm text-green-600"
-                            >
-                                {success}
-                            </div>
-                        )}
-                        {error && (
-                            <div role="alert" className="text-sm text-red-600">
-                                {error}
-                            </div>
-                        )}
-
-                        <LoadingButton
-                            type="submit"
-                            loading={loading}
-                            className="w-full"
-                        >
+                    {success && (
+                        <div role="status" className="text-sm text-green-600">
+                            {success}
+                        </div>
+                    )}
+                    {error && (
+                        <div role="alert" className="text-xs text-red-600">
+                            {error}
+                        </div>
+                    )}
+                    <Field>
+                        <LoadingButton loading={loading} type="submit">
                             Send reset link
                         </LoadingButton>
-                    </form>
-                </Form>
+                    </Field>
+                </form>
             </CardContent>
         </Card>
     );
