@@ -13,22 +13,14 @@ import {
     CardTitle,
 } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
-import {
-    Form,
-    FormControl,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage,
-} from "@/components/ui/form";
+import { Field, FieldError, FieldLabel, FieldSet } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
-import z from "zod";
+import { Controller, useForm } from "react-hook-form";
 
 import { signInSchema } from "@/lib/validation";
 import { SignInValues } from "@/types";
@@ -66,91 +58,111 @@ export function SignInForm() {
                 </CardDescription>
             </CardHeader>
             <CardContent>
-                <Form {...form}>
-                    <FormField
-                        control={form.control}
-                        name="email"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel>Email</FormLabel>
-                                <FormControl>
+                <form
+                    onSubmit={form.handleSubmit(onSubmit)}
+                    className="space-y-6"
+                >
+                    <FieldSet>
+                        <Controller
+                            control={form.control}
+                            name="email"
+                            render={({ field, fieldState }) => (
+                                <Field data-invalid={fieldState.invalid}>
+                                    <FieldLabel htmlFor="email_id">
+                                        Email
+                                    </FieldLabel>
+
                                     <Input
+                                        id="email_id"
                                         type="email"
                                         placeholder="your@email.com"
+                                        aria-invalid={fieldState.invalid}
                                         {...field}
                                     />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
-                    <FormField
-                        control={form.control}
-                        name="password"
-                        render={({ field }) => (
-                            <FormItem>
-                                <div className="flex items-center pt-4">
-                                    <FormLabel>Password</FormLabel>
-                                    <Link
-                                        href="/forgot-password"
-                                        className="ml-auto inline-block text-xs underline"
-                                    >
-                                        Forgot you password?
-                                    </Link>
-                                </div>
-                                <FormControl>
+
+                                    {fieldState.invalid && (
+                                        <FieldError
+                                            errors={[fieldState.error]}
+                                        />
+                                    )}
+                                </Field>
+                            )}
+                        />
+                        <Controller
+                            control={form.control}
+                            name="password"
+                            render={({ field, fieldState }) => (
+                                <Field data-invalid={fieldState.invalid}>
+                                    <div className="flex items-center">
+                                        <FieldLabel htmlFor="password_id">
+                                            Password
+                                        </FieldLabel>
+                                        <Link
+                                            href="/forgot-password"
+                                            className="ml-auto inline-block text-xs underline"
+                                        >
+                                            Forgot your password?
+                                        </Link>
+                                    </div>
+
                                     <PasswordInput
+                                        id="password_id"
                                         autoComplete="current-password"
                                         placeholder="Password"
+                                        aria-invalid={fieldState.invalid}
                                         {...field}
                                     />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
-                    <FormField
-                        control={form.control}
-                        name="rememberMe"
-                        render={({ field }) => (
-                            <FormItem className="flex items-center gap-2 py-4">
-                                <FormControl>
+                                    {fieldState.invalid && (
+                                        <FieldError
+                                            errors={[fieldState.error]}
+                                        />
+                                    )}
+                                </Field>
+                            )}
+                        />
+                        <Controller
+                            control={form.control}
+                            name="rememberMe"
+                            render={({ field }) => (
+                                <Field
+                                    orientation="horizontal"
+                                    className="flex items-center gap-2 "
+                                >
                                     <Checkbox
+                                        id="rememberMe_id"
                                         checked={field.value}
                                         onCheckedChange={field.onChange}
                                     />
-                                </FormControl>
-                                <FormLabel>Remember me</FormLabel>
-                            </FormItem>
+
+                                    <FieldLabel htmlFor="rememberMe_id">
+                                        Remember me
+                                    </FieldLabel>
+                                </Field>
+                            )}
+                        />
+
+                        {error && (
+                            <div role="alert" className="text-sm text-red-600">
+                                {error}
+                            </div>
                         )}
-                    />
+                    </FieldSet>
+                    <FieldSet>
+                        <LoadingButton type="submit" loading={loading}>
+                            Login
+                        </LoadingButton>
 
-                    {error && (
-                        <div role="alert" className="text-sm text-red-600">
-                            {error}
-                        </div>
-                    )}
-
-                    <LoadingButton
-                        type="submit"
-                        loading={loading}
-                        className="w-full"
-                    >
-                        Login
-                    </LoadingButton>
-                    <div className="flex w-full flex-col items-center justify-between gap-2 pt-3">
                         <Button
                             type="button"
                             variant="outline"
                             disabled={loading}
                             onClick={() => handleSocialSignIn("google")}
-                            className="w-full gap-2"
                         >
-                            <GoogleIcon width="0.98m" height="1em" />
+                            <GoogleIcon width="0.98em" height="1em" />
                             Sign in with Google
                         </Button>
-                    </div>
-                </Form>
+                    </FieldSet>
+                </form>
             </CardContent>
             <CardFooter>
                 <div className="flex w-full justify-center border-t pt-4">
