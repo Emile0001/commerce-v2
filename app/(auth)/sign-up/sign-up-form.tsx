@@ -9,13 +9,17 @@ import {
     CardTitle,
 } from "@/components/ui/card";
 import {
-    Form,
-    FormField,
-    FormControl,
-    FormItem,
-    FormLabel,
-    FormMessage,
-} from "@/components/ui/form";
+    Field,
+    FieldContent,
+    FieldDescription,
+    FieldError,
+    FieldGroup,
+    FieldLabel,
+    FieldLegend,
+    FieldSeparator,
+    FieldSet,
+    FieldTitle,
+} from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { signUpSchema } from "@/lib/validation";
 import { useForm } from "react-hook-form";
@@ -55,75 +59,87 @@ export function SignUpForm() {
                 </CardDescription>
             </CardHeader>
             <CardContent>
-                <Form {...form}>
-                    <form
-                        onSubmit={form.handleSubmit(onSubmit)}
-                        className="space-y-4"
-                    >
-                        <FormField
-                            name="name"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Name</FormLabel>
-                                    <FormControl>
-                                        <Input
-                                            placeholder="Mielie Pitt"
-                                            {...field}
-                                        />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
+                <form
+                    onSubmit={form.handleSubmit(onSubmit)}
+                    className="space-y-4"
+                >
+                    <FieldSet>
+                        <Field data-invalid={!!form.formState.errors.name}>
+                            <FieldLabel htmlFor="name_id">Name</FieldLabel>
+
+                            <Input
+                                id="name_id"
+                                placeholder="Name"
+                                aria-invalid={!!form.formState.errors.name}
+                                {...form.register("name")}
+                            />
+
+                            {form.formState.errors.name && (
+                                <FieldError
+                                    errors={[form.formState.errors.name]}
+                                />
                             )}
-                        />
-                        <FormField
-                            control={form.control}
-                            name="password"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Password</FormLabel>
-                                    <FormControl>
-                                        <PasswordInput
-                                            autoComplete="new-password"
-                                            placeholder="password"
-                                            {...field}
-                                        />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
+                        </Field>
+
+                        <Field data-invalid={!!form.formState.errors.password}>
+                            <FieldLabel htmlFor="password_id">
+                                Password
+                            </FieldLabel>
+                            <PasswordInput
+                                id="password_id"
+                                autoComplete="new-password"
+                                placeholder="Password"
+                                aria-invalid={!!form.formState.errors.password}
+                                {...form.register("password")}
+                            />
+                            {form.formState.errors.password && (
+                                <FieldError
+                                    errors={[form.formState.errors.password]}
+                                />
                             )}
-                        />
-                        <FormField
-                            control={form.control}
-                            name="passwordConfirmation"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Confirm Password</FormLabel>
-                                    <FormControl>
-                                        <PasswordInput
-                                            autoComplete="new-password"
-                                            placeholder="Confirm password"
-                                            {...field}
-                                        />
-                                    </FormControl>
-                                </FormItem>
+                        </Field>
+
+                        <Field
+                            data-invalid={
+                                !!form.formState.errors.passwordConfirmation
+                            }
+                        >
+                            <FieldLabel htmlFor="confirm-password_id">
+                                Confirm Password
+                            </FieldLabel>
+                            <PasswordInput
+                                id="confirm-password_id"
+                                autoComplete="new-password"
+                                placeholder="Confirm password"
+                                aria-invalid={
+                                    !!form.formState.errors.passwordConfirmation
+                                }
+                                {...form.register("passwordConfirmation")}
+                            />
+                            {form.formState.errors.password && (
+                                <FieldError
+                                    errors={[
+                                        form.formState.errors
+                                            .passwordConfirmation,
+                                    ]}
+                                />
                             )}
-                        />
+                        </Field>
 
                         {error && (
                             <div role="alert" className="text-sm text-red-600">
                                 {error}
                             </div>
                         )}
-
-                        <LoadingButton
-                            type="submit"
-                            className="w-full"
-                            loading={loading}
-                        >
-                            Create an account
-                        </LoadingButton>
-                    </form>
-                </Form>
+                    </FieldSet>
+                    <LoadingButton
+                        type="submit"
+                        className="w-full"
+                        loading={loading}
+                    >
+                        Create an account
+                    </LoadingButton>
+                </form>
             </CardContent>
             <CardFooter>
                 <div className="flex w-full justify-center border-t pt-4">

@@ -63,63 +63,51 @@ export function SignInForm() {
                     className="space-y-6"
                 >
                     <FieldSet>
-                        <Controller
-                            control={form.control}
-                            name="email"
-                            render={({ field, fieldState }) => (
-                                <Field data-invalid={fieldState.invalid}>
-                                    <FieldLabel htmlFor="email_id">
-                                        Email
-                                    </FieldLabel>
+                        <Field data-invalid={!!form.formState.errors.email}>
+                            <FieldLabel htmlFor="email_id">Email</FieldLabel>
 
-                                    <Input
-                                        id="email_id"
-                                        type="email"
-                                        placeholder="your@email.com"
-                                        aria-invalid={fieldState.invalid}
-                                        {...field}
-                                    />
+                            <Input
+                                id="email_id"
+                                type="email"
+                                placeholder="your@email.com"
+                                aria-invalid={!!form.formState.errors.email}
+                                {...form.register("email")}
+                            />
 
-                                    {fieldState.invalid && (
-                                        <FieldError
-                                            errors={[fieldState.error]}
-                                        />
-                                    )}
-                                </Field>
+                            {form.formState.errors.email && (
+                                <FieldError
+                                    errors={[form.formState.errors.email]}
+                                />
                             )}
-                        />
-                        <Controller
-                            control={form.control}
-                            name="password"
-                            render={({ field, fieldState }) => (
-                                <Field data-invalid={fieldState.invalid}>
-                                    <div className="flex items-center">
-                                        <FieldLabel htmlFor="password_id">
-                                            Password
-                                        </FieldLabel>
-                                        <Link
-                                            href="/forgot-password"
-                                            className="ml-auto inline-block text-xs underline"
-                                        >
-                                            Forgot your password?
-                                        </Link>
-                                    </div>
+                        </Field>
 
-                                    <PasswordInput
-                                        id="password_id"
-                                        autoComplete="current-password"
-                                        placeholder="Password"
-                                        aria-invalid={fieldState.invalid}
-                                        {...field}
-                                    />
-                                    {fieldState.invalid && (
-                                        <FieldError
-                                            errors={[fieldState.error]}
-                                        />
-                                    )}
-                                </Field>
+                        <Field data-invalid={!!form.formState.errors.password}>
+                            <div className="flex items-center">
+                                <FieldLabel htmlFor="password_id">
+                                    Password
+                                </FieldLabel>
+                                <Link
+                                    href="/forgot-password"
+                                    className="ml-auto inline-block text-xs underline"
+                                >
+                                    Forgot your password?
+                                </Link>
+                            </div>
+
+                            <PasswordInput
+                                id="password_id"
+                                autoComplete="current-password"
+                                placeholder="Password"
+                                aria-invalid={!!form.formState.errors.password}
+                                {...form.register("password")}
+                            />
+                            {form.formState.errors.password && (
+                                <FieldError
+                                    errors={[form.formState.errors.password]}
+                                />
                             )}
-                        />
+                        </Field>
+
                         <Controller
                             control={form.control}
                             name="rememberMe"

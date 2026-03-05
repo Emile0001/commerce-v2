@@ -10,7 +10,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 import { LoadingButton } from "@/components/loading-button";
 
@@ -40,29 +40,21 @@ export function ForgotPasswordForm() {
                     className="space-y-4"
                 >
                     <FieldGroup>
-                        <Controller
-                            name="email"
-                            control={form.control}
-                            render={({ field, fieldState }) => (
-                                <Field data-invalid={fieldState.invalid}>
-                                    <FieldLabel htmlFor="email_id">
-                                        Email
-                                    </FieldLabel>
-                                    <Input
-                                        {...field}
-                                        id="email_id"
-                                        placeholder="your@email.com"
-                                        aria-invalid={fieldState.invalid}
-                                        type="email"
-                                    />
-                                    {fieldState.invalid && (
-                                        <FieldError
-                                            errors={[fieldState.error]}
-                                        />
-                                    )}
-                                </Field>
+                        <Field data-invalid={!!form.formState.errors.email}>
+                            <FieldLabel htmlFor="email_id">Email</FieldLabel>
+                            <Input
+                                {...form.register("email")}
+                                id="email_id"
+                                placeholder="your@email.com"
+                                aria-invalid={!!form.formState.errors.email}
+                                type="email"
+                            />
+                            {form.formState.errors.email && (
+                                <FieldError
+                                    errors={[form.formState.errors.email]}
+                                />
                             )}
-                        />
+                        </Field>
                     </FieldGroup>
 
                     {success && (
