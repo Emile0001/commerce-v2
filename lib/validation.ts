@@ -1,5 +1,4 @@
-import z, { email } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
+import z from "zod";
 
 export const passwordSchema = z
     .string()
@@ -32,3 +31,15 @@ export const signInSchema = z.object({
 export const forgotPasswordSchema = z.object({
     email: z.email({ message: "Please enter a valid email" }),
 });
+
+export const ResetPasswordSchema = z
+    .object({
+        newPassword: passwordSchema,
+        newPasswordConfirmation: z
+            .string()
+            .min(1, { message: "Please confirm password" }),
+    })
+    .refine((data) => data.newPassword === data.newPasswordConfirmation, {
+        message: "Passwords do not match",
+        path: ["passwordConfirmation"],
+    });
