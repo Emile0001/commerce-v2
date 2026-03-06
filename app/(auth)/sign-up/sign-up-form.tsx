@@ -30,6 +30,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { PasswordInput } from "@/components/password-input";
 import { LoadingButton } from "@/components/loading-button";
 import Link from "next/link";
+import { authClient } from "@/lib/auth-client";
+import { toast } from "sonner";
 
 export function SignUpForm() {
     const [error, setError] = useState<string | null>(null);
@@ -45,7 +47,21 @@ export function SignUpForm() {
         },
     });
     async function onSubmit({ email, password, name }: SignUpValues) {
-        //TODO: Handle sign up
+        setError(null);
+
+        const { error } = await authClient.signUp.email({
+            email,
+            password,
+            name,
+            callbackURL: "/email-verified",
+        });
+
+        if (error) {
+            setError(error.message || "Something went wrong");
+        } else {
+            toast.success("Signed up successfully");
+            router.push("/dashboard");
+        }
     }
 
     const loading = form.formState.isSubmitting;
@@ -77,6 +93,23 @@ export function SignUpForm() {
                             {form.formState.errors.name && (
                                 <FieldError
                                     errors={[form.formState.errors.name]}
+                                />
+                            )}
+                        </Field>
+                        <Field data-invalid={!!form.formState.errors.email}>
+                            <FieldLabel htmlFor="email_id">Email</FieldLabel>
+
+                            <Input
+                                id="email_id"
+                                type="email"
+                                placeholder="your@email.com"
+                                aria-invalid={!!form.formState.errors.name}
+                                {...form.register("email")}
+                            />
+
+                            {form.formState.errors.email && (
+                                <FieldError
+                                    errors={[form.formState.errors.email]}
                                 />
                             )}
                         </Field>
@@ -116,7 +149,7 @@ export function SignUpForm() {
                                 }
                                 {...form.register("passwordConfirmation")}
                             />
-                            {form.formState.errors.password && (
+                            {form.formState.errors.passwordConfirmation && (
                                 <FieldError
                                     errors={[
                                         form.formState.errors
