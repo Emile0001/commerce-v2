@@ -24,6 +24,8 @@ import { Controller, useForm } from "react-hook-form";
 
 import { signInSchema } from "@/lib/validation";
 import { SignInValues } from "@/types";
+import { authClient } from "@/lib/auth-client";
+import { toast } from "sonner";
 
 export function SignInForm() {
     const [loading, setLoading] = useState(false);
@@ -42,7 +44,22 @@ export function SignInForm() {
     });
 
     async function onSubmit({ email, password, rememberMe }: SignInValues) {
-        //TODO: Handle sign in
+        setError(null);
+        setLoading(true);
+
+        const { error } = await authClient.signIn.email({
+            email,
+            password,
+            rememberMe,
+        });
+        setLoading(false);
+
+        if (error) {
+            setError(error.message || "Something went wrong");
+        } else {
+            toast.success("Signed in successfully");
+            router.push("/dashboard");
+        }
     }
 
     async function handleSocialSignIn(provider: "google") {

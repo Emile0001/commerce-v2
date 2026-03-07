@@ -20,7 +20,7 @@ import DarkMode from "./DarkMode";
 import NavSearch from "./NavSearch";
 import CartButton from "./CartButton";
 import AccountDropDownMenu from "./AccountDropDownMenu";
-import { AuthButtons } from "./AuthButtons";
+// import { AuthButtons } from "../auth/AuthButtons";
 import MobileTopItem from "./MobileTopItem";
 
 type Props = Pick<NavbarMegaPropsData, "logo" | "menu" | "auth">;
@@ -70,12 +70,12 @@ export default function MobileNav({ logo, menu, auth }: Props) {
                             </Accordion>
 
                             <SheetFooter>
-                                <div className="mt-6">
+                                {/* <div className="mt-6">
                                     <AuthButtons
                                         login={auth.login}
                                         signup={auth.signup}
                                     />
-                                </div>
+                                </div> */}
                             </SheetFooter>
                         </div>
                     </SheetContent>

@@ -2,25 +2,51 @@ import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuItem,
+    DropdownMenuLabel,
     DropdownMenuTrigger,
+    DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 import { UserIcon } from "lucide-react";
 import Link from "next/link";
 import { Button } from "../ui/button";
 import { accountLinks } from "@/app/utils/accountLinks";
+import Image from "next/image";
+import { AuthButtons } from "../auth/AuthButtons";
 
 function AccountDropDownMenu() {
+    //TODO: Render real user info
+    const user = {
+        name: "Mielie Pitt",
+        email: "mieliepitt@gmail.com",
+        image: undefined,
+        role: "admin",
+    };
+
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                <Button variant="outline" className="flex gap-4 max-w-25">
-                    <UserIcon className="h-[1.2rem] w-[1.2rem]" />
+                <Button variant="outline" className="flex gap-2 max-w-40">
+                    {user.image ? (
+                        <Image
+                            src={user.image}
+                            alt={user.image}
+                            width={16}
+                            height={16}
+                            className="rounded-full object-cover"
+                        />
+                    ) : (
+                        <UserIcon className="h-[1.2rem] w-[1.2rem]" />
+                    )}
+                    <span className="max-w-40 truncate">{user.name}</span>
                 </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-40 p-2 space-y-1">
+            <DropdownMenuContent className="w-45 p-2 space-y-1">
+                <DropdownMenuLabel>{user.email}</DropdownMenuLabel>
+                <DropdownMenuSeparator />
                 {accountLinks.map((link) => {
                     const Icon = link.icon;
                     return (
+                        //TODO: Hide admin link from non-admin users
                         <DropdownMenuItem asChild key={link.href}>
                             <Link
                                 href={link.href}
@@ -32,6 +58,8 @@ function AccountDropDownMenu() {
                         </DropdownMenuItem>
                     );
                 })}
+                <DropdownMenuSeparator />
+                <AuthButtons />
             </DropdownMenuContent>
         </DropdownMenu>
     );

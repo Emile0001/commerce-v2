@@ -1,8 +1,8 @@
 import {
     HomeIcon,
     LucideIcon,
-    BookAIcon,
-    ShirtIcon,
+    ShieldIcon,
+    UserIcon,
     HeartIcon,
     ShoppingCartIcon,
     ShoppingBagIcon,
@@ -16,8 +16,8 @@ type NavLink = {
 
 export const accountLinks: NavLink[] = [
     { href: "/", label: "home", icon: HomeIcon },
-    { href: "/about", label: "about", icon: BookAIcon },
-    { href: "/products", label: "products", icon: ShirtIcon },
+    { href: "/admin", label: "admin", icon: ShieldIcon },
+    { href: "/profile", label: "profile", icon: UserIcon },
     { href: "/favorites", label: "favorites", icon: HeartIcon },
     { href: "/cart", label: "cart", icon: ShoppingCartIcon },
     { href: "/orders", label: "orders", icon: ShoppingBagIcon },
