@@ -59,7 +59,7 @@ export function SignUpForm() {
         if (error) {
             setError(error.message || "Something went wrong");
         } else {
-            toast.success("Signed up successfully");
+            toast.success("Signed up successfully", { position: "top-center" });
             router.push("/dashboard");
         }
     }

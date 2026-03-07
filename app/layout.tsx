@@ -6,6 +6,7 @@ import { APP_NAME, APP_DESCRIPTION } from "@/lib/constants";
 import PageContainer from "@/components/layout/PageContainer";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import NavbarMega from "@/components/navbar/NavbarMega";
+import { Toaster } from "@/components/ui/sonner";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -29,7 +30,10 @@ export default function RootLayout({
                     disableTransitionOnChange
                 >
                     <NavbarMega />
-                    <PageContainer className="py-20">{children}</PageContainer>
+                    <PageContainer className="py-20">
+                        {children}
+                        <Toaster />
+                    </PageContainer>
                 </ThemeProvider>
             </body>
         </html>
