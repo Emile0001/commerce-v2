@@ -11,9 +11,13 @@ export function AuthButtons() {
     async function handleSignOut() {
         const { error } = await authClient.signOut();
         if (error) {
-            toast.error(error.message || "Something went wrong");
+            toast.error(error.message || "Something went wrong", {
+                position: "top-center",
+            });
         } else {
-            toast.success("Signed out successfully");
+            toast.success("Signed out successfully", {
+                position: "top-center",
+            });
             router.push("/sign-in");
         }
     }

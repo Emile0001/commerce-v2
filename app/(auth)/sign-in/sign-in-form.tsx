@@ -57,7 +57,7 @@ export function SignInForm() {
         if (error) {
             setError(error.message || "Something went wrong");
         } else {
-            toast.success("Signed in successfully");
+            toast.success("Signed in successfully", { position: "top-center" });
             router.push("/dashboard");
         }
     }
