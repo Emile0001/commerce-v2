@@ -5,7 +5,7 @@ import { APP_NAME, APP_DESCRIPTION } from "@/lib/constants";
 
 import PageContainer from "@/components/layout/PageContainer";
 import { ThemeProvider } from "@/components/providers/theme-provider";
-import NavbarMega from "@/components/navbar/NavbarMega";
+import NavbarMega from "@/components/navbar/Navbar";
 import { Toaster } from "@/components/ui/sonner";
 
 const inter = Inter({ subsets: ["latin"] });

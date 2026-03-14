@@ -1,3 +1,4 @@
+"use client";
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -13,14 +14,8 @@ import { accountLinks } from "@/app/utils/accountLinks";
 import Image from "next/image";
 import { AuthButtons } from "../auth/AuthButtons";
 
-function AccountDropDownMenu() {
+function AccountDropDown({ user }) {
     //TODO: Render real user info
-    const user = {
-        name: "Mielie Pitt",
-        email: "mieliepitt@gmail.com",
-        image: undefined,
-        role: "admin",
-    };
 
     return (
         <DropdownMenu>
@@ -37,7 +32,7 @@ function AccountDropDownMenu() {
                     ) : (
                         <UserIcon className="h-[1.2rem] w-[1.2rem]" />
                     )}
-                    <span className="max-w-40 truncate">{user.name}</span>
+                    {/* <span className="max-w-40 truncate">{user.name}</span> */}
                 </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-45 p-2 space-y-1">
@@ -64,4 +59,4 @@ function AccountDropDownMenu() {
         </DropdownMenu>
     );
 }
-export default AccountDropDownMenu;
+export default AccountDropDown;

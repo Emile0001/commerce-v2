@@ -1,22 +1,27 @@
-"use client";
-
 import { cn } from "@/lib/utils";
 import PageContainer from "@/components/layout/PageContainer";
-import { NAVBAR_MEGA_DATA, type NavbarMegaPropsData } from "@/app/utils/link";
+import {
+    NAVBAR_MEGA_DATA,
+    type NavbarMegaPropsData,
+} from "@/app/utils/navigationLinks";
 
 import DesktopNav from "@/components/navbar/DesktopNav";
 import MobileNav from "@/components/navbar/MobileNav";
+import { getServerSession } from "@/lib/get-session";
 
 type Props = {
     className?: string;
-    data?: NavbarMegaPropsData; // allows swapping data later (optional)
+    data?: NavbarMegaPropsData;
 };
 
-export default function NavbarMega({
+export default async function Navbar({
     className,
     data = NAVBAR_MEGA_DATA,
 }: Props) {
-    const { logo, menu, auth } = data;
+    const { logo, menu } = data;
+
+    const session = await getServerSession();
+    const user = session?.user;
 
     return (
         <header
@@ -25,8 +30,8 @@ export default function NavbarMega({
                 className,
             )}
         >
-            <DesktopNav logo={logo} menu={menu} />
-            <MobileNav logo={logo} menu={menu} auth={auth} />
+            <DesktopNav logo={logo} menu={menu} user={user} />
+            <MobileNav logo={logo} menu={menu} user={user} />
         </header>
     );
 }

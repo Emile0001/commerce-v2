@@ -5,18 +5,28 @@ import {
     NavigationMenuList,
 } from "@/components/ui/navigation-menu";
 
-import type { NavbarMegaPropsData } from "@/app/utils/link";
+import type { NavbarMegaPropsData } from "@/app/utils/navigationLinks";
 
 import { Logo } from "./Logo";
 import NavSearch from "./NavSearch";
 import DarkMode from "./DarkMode";
-import AccountDropDownMenu from "./AccountDropDownMenu";
+import AccountDropDown from "./AccountDropDown";
 import CartButton from "./CartButton";
-import DesktopTopItem from "./DesktopTopItem";
+import DesktopNavItems from "./DesktopNavItems";
 
-type Props = Pick<NavbarMegaPropsData, "logo" | "menu">;
+// type Props = Pick<NavbarMegaPropsData, "logo" | "menu">;
 
-export default function DesktopNav({ logo, menu }: Props) {
+export type AuthUser = {
+    name?: string | null;
+    email?: string | null;
+    image?: string | null;
+};
+
+type Props = NavbarMegaPropsData & {
+    user?: AuthUser;
+};
+
+export default function DesktopNav({ logo, menu, user }: Props) {
     return (
         <nav className="hidden lg:flex items-center justify-between py-4">
             <div className="flex items-center gap-8">
@@ -30,7 +40,7 @@ export default function DesktopNav({ logo, menu }: Props) {
                 <NavigationMenu>
                     <NavigationMenuList>
                         {menu.map((item) => (
-                            <DesktopTopItem key={item.title} item={item} />
+                            <DesktopNavItems key={item.title} item={item} />
                         ))}
                     </NavigationMenuList>
                 </NavigationMenu>
@@ -39,7 +49,7 @@ export default function DesktopNav({ logo, menu }: Props) {
             <div className="flex items-center gap-1">
                 <NavSearch />
                 <DarkMode />
-                <AccountDropDownMenu />
+                <AccountDropDown user={user} />
                 <CartButton numItemsInCart={9} />
             </div>
         </nav>

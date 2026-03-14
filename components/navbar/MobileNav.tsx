@@ -13,19 +13,28 @@ import {
     SheetTrigger,
 } from "@/components/ui/sheet";
 
-import type { NavbarMegaPropsData } from "@/app/utils/link";
+import type { NavbarMegaPropsData } from "@/app/utils/navigationLinks";
 
 import { Logo } from "./Logo";
 import DarkMode from "./DarkMode";
 import NavSearch from "./NavSearch";
 import CartButton from "./CartButton";
-import AccountDropDownMenu from "./AccountDropDownMenu";
+import AccountDropDown from "./AccountDropDown";
 // import { AuthButtons } from "../auth/AuthButtons";
-import MobileTopItem from "./MobileTopItem";
+import MobileNavItems from "./MobileNavItems";
 
-type Props = Pick<NavbarMegaPropsData, "logo" | "menu" | "auth">;
+// type Props = Pick<NavbarMegaPropsData, "logo" | "menu">;
+export type AuthUser = {
+    name?: string | null;
+    email?: string | null;
+    image?: string | null;
+};
 
-export default function MobileNav({ logo, menu, auth }: Props) {
+type Props = NavbarMegaPropsData & {
+    user?: AuthUser;
+};
+
+export default function MobileNav({ logo, menu, user }: Props) {
     return (
         <div className="lg:hidden py-4 flex items-center justify-between">
             <Logo
@@ -37,7 +46,7 @@ export default function MobileNav({ logo, menu, auth }: Props) {
 
             <div className="flex items-center gap-1">
                 <DarkMode />
-                <AccountDropDownMenu />
+                <AccountDropDown user={user} />
                 <CartButton numItemsInCart={9} />
 
                 <Sheet>
@@ -65,18 +74,14 @@ export default function MobileNav({ logo, menu, auth }: Props) {
                                 className="flex flex-col gap-4"
                             >
                                 {menu.map((top) => (
-                                    <MobileTopItem key={top.title} item={top} />
+                                    <MobileNavItems
+                                        key={top.title}
+                                        item={top}
+                                    />
                                 ))}
                             </Accordion>
 
-                            <SheetFooter>
-                                {/* <div className="mt-6">
-                                    <AuthButtons
-                                        login={auth.login}
-                                        signup={auth.signup}
-                                    />
-                                </div> */}
-                            </SheetFooter>
+                            <SheetFooter>{/* kyk */}</SheetFooter>
                         </div>
                     </SheetContent>
                 </Sheet>

@@ -1,6 +1,6 @@
 "use client";
 
-import type { MegaMenuItem } from "@/app/utils/link";
+import type { MegaMenuItem } from "@/app/utils/navigationLinks";
 
 import {
     Accordion,
@@ -12,7 +12,7 @@ import Link from "next/link";
 
 import NavPromoCard from "./NavPromoCard";
 
-export default function MobileTopItem({ item }: { item: MegaMenuItem }) {
+export default function MobileNavItems({ item }: { item: MegaMenuItem }) {
     return (
         <AccordionItem value={item.title} className="border-b-0">
             <AccordionTrigger className="text-md py-0 font-semibold hover:no-underline">

@@ -1,5 +1,3 @@
-import type React from "react";
-
 export type NavLeaf = {
     title: string;
     url: string;
@@ -35,22 +33,13 @@ export interface NavbarMegaPropsData {
         className?: string;
     };
     menu: MegaMenuItem[];
-    auth: {
-        login: { title: string; url: string };
-        signup: { title: string; url: string };
-    };
 }
 
-/**
- * Colourful Nails mega menu data
- * - SHOP/STYLES/OCCASIONS have multi-column groups + promo
- * - LEARN + CUSTOM are simpler but still consistent with MegaMenuItem
- */
 export const NAVBAR_MEGA_DATA: NavbarMegaPropsData = {
     logo: {
         url: "/",
         src: "/images/logo/Colourfull_Nails_Logo.png",
-        alt: "Colourful Nails logo",
+        alt: "Colourfull Nails logo",
         title: "",
         className: "h-8 w-auto",
     },
@@ -58,12 +47,12 @@ export const NAVBAR_MEGA_DATA: NavbarMegaPropsData = {
     menu: [
         {
             title: "SHOP",
-            url: "/shop",
+            url: "/products",
             groups: [
                 {
                     title: "SHOP BY FINISH",
                     items: [
-                        { title: "ALL PRESS-ON SETS", url: "/shop" },
+                        { title: "ALL PRESS-ON SETS", url: "/products" },
                         { title: "GLOSSY", url: "/shop/finish/glossy" },
                         { title: "MATTE", url: "/shop/finish/matte" },
                         {
@@ -344,9 +333,4 @@ export const NAVBAR_MEGA_DATA: NavbarMegaPropsData = {
             },
         },
     ],
-
-    auth: {
-        login: { title: "LOG IN", url: "/login" },
-        signup: { title: "REGISTER", url: "/register" },
-    },
 };

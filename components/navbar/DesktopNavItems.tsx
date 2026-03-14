@@ -3,7 +3,7 @@
 import Link from "next/link";
 
 import { cn } from "@/lib/utils";
-import type { MegaMenuItem } from "@/app/utils/link";
+import type { MegaMenuItem } from "@/app/utils/navigationLinks";
 
 import {
     NavigationMenuContent,
@@ -14,7 +14,7 @@ import {
 
 import NavPromoCard from "./NavPromoCard";
 
-export default function DesktopTopItem({ item }: { item: MegaMenuItem }) {
+export default function DesktopNavItems({ item }: { item: MegaMenuItem }) {
     const hasDropdown = item.groups.length > 0;
 
     if (!hasDropdown) {

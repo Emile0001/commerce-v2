@@ -3,7 +3,6 @@
 import type { ComponentProps } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
-import { file } from "zod";
 
 export interface UserAvatarProps extends ComponentProps<typeof Avatar> {
     name: string;
@@ -29,6 +28,7 @@ export function UserAvatar({
                 alt={name}
                 className="aspect-square object-cover"
             />
+
             <AvatarFallback className="border">{initials}</AvatarFallback>
         </Avatar>
     );
