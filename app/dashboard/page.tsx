@@ -8,6 +8,7 @@ import {
     CardTitle,
 } from "@/components/ui/card";
 import { UserAvatar } from "@/components/user-avatar";
+import { User } from "@/lib/auth";
 import { getServerSession } from "@/lib/get-session";
 
 import { format } from "date-fns";
@@ -38,7 +39,7 @@ export default async function DashboardPage() {
                     </p>
                 </div>
                 {/* TODO: Use actual user data */}
-                <EmailVerificationAlert />
+                {!user.emailVerified && <EmailVerificationAlert />}
                 <ProfileInformation user={user} />
             </div>
         </main>
@@ -46,7 +47,7 @@ export default async function DashboardPage() {
 }
 
 interface ProfileInformationPageProps {
-    user: user;
+    user: User;
 }
 function ProfileInformation({ user }: ProfileInformationPageProps) {
     // TODO: Render real user info

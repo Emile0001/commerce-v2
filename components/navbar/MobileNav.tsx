@@ -20,18 +20,13 @@ import DarkMode from "./DarkMode";
 import NavSearch from "./NavSearch";
 import CartButton from "./CartButton";
 import AccountDropDown from "./AccountDropDown";
-// import { AuthButtons } from "../auth/AuthButtons";
 import MobileNavItems from "./MobileNavItems";
+import { User } from "better-auth";
 
 // type Props = Pick<NavbarMegaPropsData, "logo" | "menu">;
-export type AuthUser = {
-    name?: string | null;
-    email?: string | null;
-    image?: string | null;
-};
 
 type Props = NavbarMegaPropsData & {
-    user?: AuthUser;
+    user?: User | null;
 };
 
 export default function MobileNav({ logo, menu, user }: Props) {

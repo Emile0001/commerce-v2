@@ -13,17 +13,12 @@ import DarkMode from "./DarkMode";
 import AccountDropDown from "./AccountDropDown";
 import CartButton from "./CartButton";
 import DesktopNavItems from "./DesktopNavItems";
+import { User } from "better-auth";
 
 // type Props = Pick<NavbarMegaPropsData, "logo" | "menu">;
 
-export type AuthUser = {
-    name?: string | null;
-    email?: string | null;
-    image?: string | null;
-};
-
 type Props = NavbarMegaPropsData & {
-    user?: AuthUser;
+    user?: User | null;
 };
 
 export default function DesktopNav({ logo, menu, user }: Props) {
