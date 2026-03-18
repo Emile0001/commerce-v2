@@ -34,7 +34,7 @@ export default function DesktopNavItems({ item }: { item: MegaMenuItem }) {
 
     return (
         <NavigationMenuItem>
-            <NavigationMenuTrigger className="text-xs uppercase tracking-widest">
+            <NavigationMenuTrigger className="text-xs uppercase tracking-widest cursor-pointer">
                 {item.title}
             </NavigationMenuTrigger>
 

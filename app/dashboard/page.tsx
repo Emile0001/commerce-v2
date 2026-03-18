@@ -38,8 +38,8 @@ export default async function DashboardPage() {
                         Welcome back! Here&apos;s your account overview.
                     </p>
                 </div>
-                {/* TODO: Use actual user data */}
                 {!user.emailVerified && <EmailVerificationAlert />}
+
                 <ProfileInformation user={user} />
             </div>
         </main>
@@ -50,8 +50,6 @@ interface ProfileInformationPageProps {
     user: User;
 }
 function ProfileInformation({ user }: ProfileInformationPageProps) {
-    // TODO: Render real user info
-
     return (
         <Card>
             <CardHeader>

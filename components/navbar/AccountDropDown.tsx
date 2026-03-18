@@ -16,12 +16,9 @@ import { UserAvatar } from "../user-avatar";
 import { User } from "better-auth";
 
 function AccountDropDown({ user }: { user?: User | null }) {
-    //TODO: Render real user info
-
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                {/* I added a little padding adjustment so the avatar fits nicely */}
                 <Button
                     variant="outline"
                     size="icon"

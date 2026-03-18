@@ -15,7 +15,7 @@ import NavPromoCard from "./NavPromoCard";
 export default function MobileNavItems({ item }: { item: MegaMenuItem }) {
     return (
         <AccordionItem value={item.title} className="border-b-0">
-            <AccordionTrigger className="text-md py-0 font-semibold hover:no-underline">
+            <AccordionTrigger className="text-md py-0 font-semibold hover:no-underline cursor-pointer">
                 {item.title}
             </AccordionTrigger>
 
