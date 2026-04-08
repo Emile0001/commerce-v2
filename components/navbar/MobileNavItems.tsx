@@ -1,6 +1,6 @@
 "use client";
 
-import type { MegaMenuItem } from "@/app/utils/navigationLinks";
+import type { MegaMenuItem } from "@/utils/navigationLinks";
 
 import {
     Accordion,

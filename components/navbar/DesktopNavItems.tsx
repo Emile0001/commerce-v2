@@ -3,7 +3,7 @@
 import Link from "next/link";
 
 import { cn } from "@/lib/utils";
-import type { MegaMenuItem } from "@/app/utils/navigationLinks";
+import type { MegaMenuItem } from "@/utils/navigationLinks";
 
 import {
     NavigationMenuContent,

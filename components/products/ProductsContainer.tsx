@@ -5,7 +5,7 @@ import ProductsGrid from "./ProductsGrid";
 import ProductsList from "./ProductsList";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { fetchAllProducts } from "@/app/utils/actions";
+import { fetchAllProducts } from "@/utils/actions";
 
 /**
  * ProductsContainer

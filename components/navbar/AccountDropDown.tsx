@@ -10,7 +10,7 @@ import {
 import { UserIcon } from "lucide-react";
 import Link from "next/link";
 import { Button } from "../ui/button";
-import { accountLinks } from "@/app/utils/accountLinks";
+import { accountLinks } from "@/utils/accountLinks";
 import { AuthButtons } from "../auth/AuthButtons";
 import { UserAvatar } from "../user-avatar";
 import { User } from "better-auth";

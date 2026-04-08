@@ -5,7 +5,7 @@ import {
     NavigationMenuList,
 } from "@/components/ui/navigation-menu";
 
-import type { NavbarMegaPropsData } from "@/app/utils/navigationLinks";
+import type { NavbarMegaPropsData } from "@/utils/navigationLinks";
 
 import { Logo } from "./Logo";
 import NavSearch from "./NavSearch";

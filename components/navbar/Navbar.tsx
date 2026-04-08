@@ -3,7 +3,7 @@ import PageContainer from "@/components/layout/PageContainer";
 import {
     NAVBAR_MEGA_DATA,
     type NavbarMegaPropsData,
-} from "@/app/utils/navigationLinks";
+} from "@/utils/navigationLinks";
 
 import DesktopNav from "@/components/navbar/DesktopNav";
 import MobileNav from "@/components/navbar/MobileNav";

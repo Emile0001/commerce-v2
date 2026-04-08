@@ -13,7 +13,7 @@ import {
     SheetTrigger,
 } from "@/components/ui/sheet";
 
-import type { NavbarMegaPropsData } from "@/app/utils/navigationLinks";
+import type { NavbarMegaPropsData } from "@/utils/navigationLinks";
 
 import { Logo } from "./Logo";
 import DarkMode from "./DarkMode";

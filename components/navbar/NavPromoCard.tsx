@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 
-import type { NavPromo } from "@/app/utils/navigationLinks";
+import type { NavPromo } from "@/utils/navigationLinks";
 import { cn } from "@/lib/utils";
 
 type Props = {
