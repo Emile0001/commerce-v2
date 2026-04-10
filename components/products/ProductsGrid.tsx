@@ -1,34 +1,18 @@
 import { Product } from "@/lib/generated/prisma/client";
-import { formatCurrency } from "@/utils/format";
 import { Card, CardContent } from "@/components/ui/card";
 import Link from "next/link";
 import Image from "next/image";
 import FavoriteToggleButton from "./FavoriteToggleButton";
+import ProductPrice from "./product-price";
 
-/**
- * ProductsGrid
- *
- * Displays a responsive grid of product cards.
- * Each card links to the product detail page and allows
- * the user to toggle the product as a favorite.
- *
- * This component is purely presentational:
- * - It does NOT fetch data
- * - It assumes `products` is already validated
- */
 function ProductsGrid({ products }: { products: Product[] }) {
     return (
         // Responsive grid layout
         <div className="pt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {products.map((product) => {
-                // Destructure commonly used fields for clarity
                 const { id, name, price, image } = product;
 
-                // Format price once per product (avoid formatting in JSX)
-                const formattedPrice = formatCurrency(price);
-
                 return (
-                    // Each product is wrapped in an <article> for semantic HTML
                     <article key={id} className="group relative">
                         {/* 
                             Entire card is clickable and routes to
@@ -49,11 +33,6 @@ function ProductsGrid({ products }: { products: Product[] }) {
                                             sizes="(max-width: 768px) 100vw,
                                                    (max-width: 1200px) 50vw,
                                                    33vw"
-                                            /*
-                                                Do NOT use `priority` for all images.
-                                                Reserve it for hero / above-the-fold images
-                                                to avoid performance issues.
-                                            */
                                             className="w-full rounded object-cover transform transition-transform duration-500 group-hover:scale-110"
                                         />
                                     </div>
@@ -63,9 +42,11 @@ function ProductsGrid({ products }: { products: Product[] }) {
                                         <h2 className="text-lg capitalize">
                                             {name}
                                         </h2>
-                                        <p className="mt-2 text-muted-foreground">
-                                            {formattedPrice}
-                                        </p>
+
+                                        <ProductPrice
+                                            value={Number(price)}
+                                            className="mt-2 text-muted-foreground"
+                                        />
                                     </div>
                                 </CardContent>
                             </Card>

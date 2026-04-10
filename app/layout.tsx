@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "@/app/globals.css";
+import "./globals.css";
 import { APP_NAME, APP_DESCRIPTION } from "@/lib/constants";
 
 import PageContainer from "@/components/layout/PageContainer";
