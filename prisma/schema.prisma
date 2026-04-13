@@ -8,16 +8,19 @@ datasource db {
 }
 
 model Product {
-  id          String   @id @default(uuid())
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   name        String
-  company     String
+  slug        String   @unique(map: "product_slug_idx")
+  category    String
+  images      String[]
   description String
-  featured    Boolean
-  image       String
-  price       Int
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  clerkId     String
+  stock       Int
+  price       Decimal  @default(0) @db.Decimal(12, 2)
+  rating      Decimal  @default(0) @db.Decimal(3, 2)
+  numReviews  Int      @default(0)
+  isFeatured  Boolean
+  banner      String?
+  createdAt   DateTime @default(now()) @db.Timestamp(6)
 }
 
 model User {

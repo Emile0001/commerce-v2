@@ -10,7 +10,7 @@ function ProductsGrid({ products }: { products: Product[] }) {
         // Responsive grid layout
         <div className="pt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {products.map((product) => {
-                const { id, name, price, image } = product;
+                const { id, name, price, images, slug } = product;
 
                 return (
                     <article key={id} className="group relative">
@@ -18,7 +18,7 @@ function ProductsGrid({ products }: { products: Product[] }) {
                             Entire card is clickable and routes to
                             the product detail page 
                         */}
-                        <Link href={`/products/${id}`}>
+                        <Link href={`/products/${slug}`}>
                             <Card className="transform transition-shadow duration-500 group-hover:shadow-xl">
                                 <CardContent className="p-4">
                                     {/* 
@@ -27,7 +27,7 @@ function ProductsGrid({ products }: { products: Product[] }) {
                                     */}
                                     <div className="relative h-64 md:h-48 overflow-hidden rounded">
                                         <Image
-                                            src={image}
+                                            src={images[1]}
                                             alt={name}
                                             fill
                                             sizes="(max-width: 768px) 100vw,

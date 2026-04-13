@@ -6,8 +6,9 @@ import prisma from "@/lib/prisma";
 
 export const fetchFeaturedProducts = async () => {
     const products = await prisma.product.findMany({
+        orderBy: { createdAt: "desc" },
         where: {
-            featured: true,
+            isFeatured: true,
         },
     });
     return products;
@@ -35,7 +36,7 @@ export const fetchAllProducts = async ({
             ? {
                   OR: [
                       { name: { contains: q, mode: "insensitive" } },
-                      { company: { contains: q, mode: "insensitive" } },
+                      { description: { contains: q, mode: "insensitive" } },
                   ],
               }
             : undefined,
