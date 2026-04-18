@@ -1,4 +1,5 @@
 import { Product } from "@/lib/generated/prisma/client";
+// import { Product } from "@/types";
 import { Card, CardContent } from "@/components/ui/card";
 import Link from "next/link";
 import Image from "next/image";

@@ -112,11 +112,11 @@ export default function ProductDetails() {
                     </div>
 
                     {/* Optional: small badges under gallery */}
-                    {/* <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-2">
                         <Badge variant="secondary">Reusable</Badge>
                         <Badge variant="secondary">Salon finish</Badge>
                         <Badge variant="secondary">Beginner-friendly</Badge>
-                    </div> */}
+                    </div>
                 </div>
 
                 {/* RIGHT: Product info */}
