@@ -111,7 +111,7 @@ export default function ProductDetails() {
                         </Card>
                     </div>
 
-                    {/* Optional: small badges under gallery */}
+                    {/* small badges*/}
                     <div className="flex flex-wrap gap-2">
                         <Badge variant="secondary">Reusable</Badge>
                         <Badge variant="secondary">Salon finish</Badge>

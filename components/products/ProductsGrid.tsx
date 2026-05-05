@@ -3,7 +3,7 @@ import { Product } from "@/lib/generated/prisma/client";
 import { Card, CardContent } from "@/components/ui/card";
 import Link from "next/link";
 import Image from "next/image";
-import FavoriteToggleButton from "./FavoriteToggleButton";
+import FavoriteToggleButton from "./favorites/FavoriteToggleButton";
 import ProductPrice from "./product-price";
 
 function ProductsGrid({ products }: { products: Product[] }) {

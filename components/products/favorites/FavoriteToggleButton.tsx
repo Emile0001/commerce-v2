@@ -1,5 +1,5 @@
 import { HeartIcon } from "lucide-react";
-import { Button } from "../ui/button";
+import { Button } from "../../ui/button";
 
 function FavoriteToggleButton({ productId }: { productId: string }) {
     return (
