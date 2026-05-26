@@ -8,32 +8,158 @@ datasource db {
 }
 
 model Product {
-  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  name        String
-  slug        String   @unique(map: "product_slug_idx")
-  category    String
-  images      String[]
-  description String
-  stock       Int
-  price       Decimal  @default(0) @db.Decimal(12, 2)
-  rating      Decimal  @default(0) @db.Decimal(3, 2)
-  numReviews  Int      @default(0)
-  isFeatured  Boolean
-  banner      String?
-  createdAt   DateTime @default(now()) @db.Timestamp(6)
+  id                String             @id @default(cuid())
+  name              String
+  slug              String             @unique(map: "product_slug_idx")
+  description       String
+  basePrice         Decimal            @default(0) @db.Decimal(12, 2)
+  avgRating         Decimal            @default(0) @db.Decimal(3, 2)
+  totalReviews      Int                @default(0)
+  isFeatured        Boolean
+  quantity          Int
+  createdAt         DateTime           @default(now()) @db.Timestamp(6)
+  updatedAt         DateTime           @updatedAt
+  productImages     ProductImage[]
+  productVariants   ProductVariant[]
+  customNailConfigs CustomNailConfig[]
+  colourOnProducts  ColourOnProduct[]
+  reviews           Review[]
+
+  @@index([slug])
+}
+
+model Review {
+  id                 String   @id @default(cuid())
+  title              String
+  comment            String
+  rating             Int
+  isVerifiedPurchase Boolean  @default(true)
+  createdAt          DateTime @default(now()) @db.Timestamp(6)
+  userId             String
+  user               User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  productId          String
+  product            Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
+
+model ProductImage {
+  id        String  @id @default(cuid())
+  productId String
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  url       String?
+  alt       String?
+
+  sortOrder Int @default(0)
+}
+
+model ColourGroup {
+  id   String @id @default(cuid())
+  name String @unique
+
+  colours Colour[]
+}
+
+model Colour {
+  id               String            @id @default(cuid())
+  name             String
+  hex              String?
+  url              String?
+  alt              String?
+  colourGroupId    String
+  colourGroup      ColourGroup       @relation(fields: [colourGroupId], references: [id])
+  colourOnProducts ColourOnProduct[]
+}
+
+model ColourOnProduct {
+  id        String  @id @default(cuid())
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+  colourId  String
+  colour    Colour  @relation(fields: [colourId], references: [id])
+}
+
+//Separated tables - ProductVariant can branch out for Variant Product data
+model ProductVariant {
+  id        String  @id @default(cuid())
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+  sku       String  @unique
+  stock     Int
+  size      String //50ml, 100ml, small, medium, s,m,l,xl 
+}
+
+//Separated tables - CustomNailConfig can branch out for custom nail data
+model CustomNailConfig {
+  id                     String                  @id @default(cuid())
+  productId              String
+  product                Product                 @relation(fields: [productId], references: [id])
+  allowCustomSize        Boolean                 @default(true)
+  nailLengthOnNailShapes NailLengthOnNailShape[]
+}
+
+//each nail shape can have many nail lengths: Almond - short, medium, long. Coffin - short, medium
+model NailShape {
+  id                     String                  @id @default(cuid())
+  name                   String                  @unique
+  nailLengthOnNailShapes NailLengthOnNailShape[]
+}
+
+//each nail shape can have many nail lengths: Almond - short, medium, long. Coffin - short, medium
+model NailLength {
+  id                     String                  @id @default(cuid())
+  name                   String                  @unique
+  nailLengthOnNailShapes NailLengthOnNailShape[]
+}
+
+//The many to many join table for NailShape and NailLength
+model NailLengthOnNailShape {
+  id                 String           @id @default(cuid())
+  nailLengthId       String
+  nailLength         NailLength       @relation(fields: [nailLengthId], references: [id])
+  nailShapeId        String
+  nailShape          NailShape        @relation(fields: [nailShapeId], references: [id])
+  CustomNailConfigId String
+  CustomNailConfig   CustomNailConfig @relation(fields: [CustomNailConfigId], references: [id])
+}
+
+//NailSizePreset :lookup table that stores predefined sets of measurements for the five nails
+model NailSizePreset {
+  id     String @id @default(cuid())
+  name   String @unique
+  thumb  Int
+  index  Int
+  middle Int
+  ring   Int
+  pinky  Int
+}
+
+//User can save and recall their size presets for PD page: select oval shape then select their Oval size preset
+model UserSavedPreset {
+  id     String @id @default(cuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+  name   String
+  thumb  Int
+  index  Int
+  middle Int
+  ring   Int
+  pinky  Int
+
+  @@unique([userId, name])
 }
 
 model User {
-  id            String    @id
-  name          String
-  email         String    @unique
-  emailVerified Boolean   @default(false)
-  image         String?
-  role          String?
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
-  accounts      Account[]
-  sessions      Session[]
+  id               String            @id
+  name             String
+  email            String            @unique
+  emailVerified    Boolean           @default(false)
+  image            String?
+  role             String?
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+  accounts         Account[]
+  sessions         Session[]
+  userSavedPresets UserSavedPreset[]
+  reviews          Review[]
 
   @@map("user")
 }

@@ -231,7 +231,7 @@ const ProductImages = ({ images }: { images: string[] }) => {
                                         type="button"
                                         key={index}
                                         onClick={() => setActiveIndex(index)}
-                                        className={`overflow-hidden rounded-lg border-2 transition ${
+                                        className={`overflow-hidden rounded-lg border-2 transition cursor-pointer ${
                                             isActive
                                                 ? "border-primary"
                                                 : "border-transparent opacity-60 hover:opacity-100"
@@ -263,7 +263,7 @@ const ProductImages = ({ images }: { images: string[] }) => {
                                 type="button"
                                 key={index}
                                 onClick={() => setActiveIndex(index)}
-                                className={`group overflow-hidden rounded-lg border transition ${
+                                className={`group overflow-hidden rounded-lg border transition cursor-pointer ${
                                     isActive
                                         ? "border-primary"
                                         : "border-transparent"
