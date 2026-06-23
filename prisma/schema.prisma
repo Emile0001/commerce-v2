@@ -7,11 +7,23 @@ datasource db {
   provider = "postgresql"
 }
 
+enum ProductType {
+  VARIANT
+  CUSTOM_NAIL
+}
+
+enum DiscountType {
+  PERCENTAGE
+  FIXED_PRICE
+}
+
 model Product {
   id                String             @id @default(cuid())
   name              String
   slug              String             @unique(map: "product_slug_idx")
   description       String
+  discountType      DiscountType?
+  discountValue     Decimal?
   basePrice         Decimal            @default(0) @db.Decimal(12, 2)
   avgRating         Decimal            @default(0) @db.Decimal(3, 2)
   totalReviews      Int                @default(0)
@@ -19,26 +31,13 @@ model Product {
   quantity          Int
   createdAt         DateTime           @default(now()) @db.Timestamp(6)
   updatedAt         DateTime           @updatedAt
+  typeProduct       ProductType
   productImages     ProductImage[]
   productVariants   ProductVariant[]
   customNailConfigs CustomNailConfig[]
   colourOnProducts  ColourOnProduct[]
-  reviews           Review[]
 
   @@index([slug])
-}
-
-model Review {
-  id                 String   @id @default(cuid())
-  title              String
-  comment            String
-  rating             Int
-  isVerifiedPurchase Boolean  @default(true)
-  createdAt          DateTime @default(now()) @db.Timestamp(6)
-  userId             String
-  user               User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  productId          String
-  product            Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
 }
 
 model ProductImage {
@@ -67,6 +66,8 @@ model Colour {
   colourGroupId    String
   colourGroup      ColourGroup       @relation(fields: [colourGroupId], references: [id])
   colourOnProducts ColourOnProduct[]
+
+  @@unique([name, colourGroupId]) //prevent admin from adding the same colour name in a colour group
 }
 
 model ColourOnProduct {
@@ -75,6 +76,7 @@ model ColourOnProduct {
   product   Product @relation(fields: [productId], references: [id])
   colourId  String
   colour    Colour  @relation(fields: [colourId], references: [id])
+  sortOrder Int     @default(0) //so admin can arrange the order that colours appear
 }
 
 //Separated tables - ProductVariant can branch out for Variant Product data
@@ -100,6 +102,8 @@ model CustomNailConfig {
 model NailShape {
   id                     String                  @id @default(cuid())
   name                   String                  @unique
+  imgUrl                 String
+  imgAlt                 String
   nailLengthOnNailShapes NailLengthOnNailShape[]
 }
 

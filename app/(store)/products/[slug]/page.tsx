@@ -1,5 +1,5 @@
-import BreadCrumbs from "@/components/products/single-product/BreadCrumbs";
-import ProductImages from "@/components/products/single-product/product-images";
+import BreadCrumbs from "@/components/products/product-detail/BreadCrumbs";
+import ProductImages from "@/components/products/product-detail/product-images";
 import { getProductBySlug } from "@/lib/actions/product.actions";
 import { notFound } from "next/navigation";
 
